@@ -55,27 +55,19 @@ if (registerForm) {
     setLoading(btn, true);
 
     try {
-      const response = await fetch(`${API_BASE}/auth/register`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ firstName, lastName, email, password }),
-      });
+      const fullName = `${firstName} ${lastName}`;
+      const data = await window.salusApi.register(fullName, email, password);
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        showAlert(data.message || 'Erro ao criar conta. Tente novamente.');
-        return;
-      }
-
-      // Salva token e redireciona para o dashboard
-      localStorage.setItem('salus_token', data.token);
-      localStorage.setItem('salus_user', JSON.stringify(data.user));
+      // O backend retorna { id, name, role }
+      localStorage.setItem('salus_token', data.id);
+      localStorage.setItem('salus_user', JSON.stringify(data));
+      localStorage.setItem('salus_user_id', data.id);
 
       window.location.href = '/interface/pages/dashboard.html';
 
     } catch (err) {
-      showAlert('Nao foi possivel conectar ao servidor. Tente novamente.');
+      console.error('Erro no registro:', err);
+      showAlert(err.message || 'Erro ao criar conta. Tente novamente.');
     } finally {
       setLoading(btn, false);
     }

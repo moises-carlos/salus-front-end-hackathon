@@ -46,40 +46,34 @@ if (loginForm) {
     setLoading(btn, true);
 
     try {
-      const response = await fetch(`${API_BASE}/auth/login`, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ email, password }),
-      });
+      // Usando o novo serviço de API
+      const data = await window.salusApi.login(email, password);
 
-      const data = await response.json();
-
-      if (!response.ok) {
-        throw new Error(data.message || 'Erro no login');
-      }
-
-      // Login real (backend)
-      localStorage.setItem('salus_token', data.token);
-      localStorage.setItem('salus_user', JSON.stringify(data.user));
+      // O backend retorna { id, name, role }
+      localStorage.setItem('salus_token', data.id); // Usando ID como token por enquanto
+      localStorage.setItem('salus_user', JSON.stringify(data));
+      localStorage.setItem('salus_user_id', data.id);
 
       window.location.href = '/interface/pages/dashboard.html';
 
     } catch (err) {
-
-      console.warn('Backend indisponível. Usando login fictício.');
-
-      // Login fictício (fallback)
-      const fakeUser = {
-        firstName: 'Caio',
-        lastName: 'Lucas',
-        email: email
-      };
-
-      localStorage.setItem('salus_token', 'fake-jwt-token');
-      localStorage.setItem('salus_user', JSON.stringify(fakeUser));
-
-      window.location.href = '/interface/pages/dashboard.html';
-
+      console.error('Erro no login:', err);
+      
+      // Fallback para desenvolvimento caso o backend falhe
+      if (err.message.includes('Failed to fetch') || err.message.includes('404')) {
+        console.warn('Backend indisponível. Usando login fictício.');
+        const fakeUser = {
+          id: 'fake-uuid-123',
+          name: 'Usuário Teste',
+          email: email
+        };
+        localStorage.setItem('salus_token', 'fake-jwt-token');
+        localStorage.setItem('salus_user', JSON.stringify(fakeUser));
+        localStorage.setItem('salus_user_id', fakeUser.id);
+        window.location.href = '/interface/pages/dashboard.html';
+      } else {
+        showAlert(err.message || 'Erro no login. Verifique suas credenciais.');
+      }
     } finally {
       setLoading(btn, false);
     }
