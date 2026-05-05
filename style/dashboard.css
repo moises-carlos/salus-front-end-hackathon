@@ -1,0 +1,247 @@
+
+
+.dashboard {
+  display: flex;
+  min-height: 100vh;
+  background: var(--gray-50);
+}
+
+
+.sidebar {
+  width: 260px;
+  background: var(--blue-900);
+  color: var(--white);
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-8) var(--space-6);
+  gap: var(--space-8);
+  position: sticky;
+  top: 0;
+  height: 100vh;
+}
+
+.sidebar .salus-logo {
+  color: var(--white);
+  font-size: 1.6rem;
+}
+
+/* Nav */
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+
+.nav-item {
+  padding: var(--space-3) var(--space-4);
+  border-radius: var(--radius-md);
+  cursor: pointer;
+  transition: var(--transition);
+  font-size: 0.9rem;
+  color: var(--blue-200);
+  display: flex;
+  align-items: center;
+  gap: var(--space-3);
+}
+
+.nav-item:hover {
+  background: rgba(255,255,255,0.06);
+  color: var(--white);
+}
+
+.nav-item.active {
+  background: var(--blue-600);
+  color: var(--white);
+}
+
+/* Logout */
+.logout-btn {
+  margin-top: auto;
+}
+
+
+
+.dashboard-main {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  padding: var(--space-10);
+  gap: var(--space-10);
+}
+
+
+
+.dashboard-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: var(--space-4);
+}
+
+.dashboard-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.9rem;
+  color: var(--blue-900);
+}
+
+.user-info {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+}
+
+.quick-actions {
+  display: flex;
+  gap: var(--space-4);
+  flex-wrap: wrap;
+}
+
+.quick-card {
+  flex: 1;
+  min-width: 220px;
+  background: linear-gradient(135deg, var(--blue-600), var(--blue-800));
+  color: var(--white);
+  padding: var(--space-6);
+  border-radius: var(--radius-lg);
+  cursor: pointer;
+  transition: var(--transition);
+  box-shadow: var(--shadow-md);
+}
+
+.quick-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-lg);
+}
+
+.quick-card h3 {
+  font-size: 1rem;
+  margin-bottom: var(--space-2);
+}
+
+.quick-card p {
+  font-size: 0.85rem;
+  opacity: 0.85;
+}
+
+
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--space-6);
+}
+
+.card-block {
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  padding: var(--space-6);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-3);
+}
+
+.card-block h3 {
+  font-size: 1rem;
+  color: var(--blue-900);
+}
+
+.card-block p {
+  font-size: 0.85rem;
+  color: var(--gray-400);
+}
+
+/* Cards especiais */
+.card-highlight {
+  grid-column: span 2;
+}
+
+.card-small {
+  min-height: 120px;
+}
+
+
+
+/* Tablets */
+@media (max-width: 1024px) {
+  .dashboard-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .card-highlight {
+    grid-column: span 2;
+  }
+
+  .sidebar {
+    width: 220px;
+  }
+}
+
+/* Mobile */
+@media (max-width: 768px) {
+
+  .dashboard {
+    flex-direction: column;
+  }
+
+  .sidebar {
+    width: 100%;
+    height: auto;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    padding: var(--space-4) var(--space-6);
+  }
+
+  .sidebar-nav {
+    flex-direction: row;
+    gap: var(--space-3);
+  }
+
+  .nav-item {
+    padding: var(--space-2) var(--space-3);
+    font-size: 0.8rem;
+  }
+
+  .logout-btn {
+    display: none;
+  }
+
+  .dashboard-main {
+    padding: var(--space-6);
+  }
+
+  .dashboard-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .dashboard-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .card-highlight {
+    grid-column: span 1;
+  }
+
+  .quick-actions {
+    flex-direction: column;
+  }
+}
+
+/* Mobile pequeno */
+@media (max-width: 480px) {
+
+  .dashboard-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .quick-card {
+    padding: var(--space-5);
+  }
+
+  .card-block {
+    padding: var(--space-5);
+  }
+
+}

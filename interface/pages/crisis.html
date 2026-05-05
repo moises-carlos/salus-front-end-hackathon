@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SALUS — Modo Crise</title>
+
+  <link rel="stylesheet" href="/style/global.css">
+  <link rel="stylesheet" href="/style/crisis.css">
+</head>
+<body>
+
+<div class="crisis-page">
+
+  <div class="crisis-container">
+
+    <!-- Header -->
+    <div class="crisis-header">
+      <h1>Respire. Você não está sozinho.</h1>
+      <p>Vamos desacelerar juntos por alguns segundos.</p>
+    </div>
+
+    <!-- Respiração guiada -->
+    <div class="breathing-box">
+      <div class="breath-circle" id="breath-circle"></div>
+      <div class="breath-text" id="breath-text">Inspire...</div>
+    </div>
+
+    <!-- Ações -->
+    <div class="crisis-actions">
+      <button class="btn btn-outline crisis-btn" onclick="goBack()">
+        Voltar ao app
+      </button>
+
+      <button class="btn btn-danger crisis-btn" onclick="callHelp()">
+        Preciso de ajuda agora
+      </button>
+    </div>
+
+    <!-- Emergência -->
+    <div class="emergency-box">
+      <h3>Contato de emergência</h3>
+      <p>Se estiver em risco imediato, procure ajuda profissional ou ligue para um serviço de apoio emocional.</p>
+    </div>
+
+  </div>
+
+</div>
+
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/crisis.js"></script>
+</body>
+</html>

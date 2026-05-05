@@ -1,0 +1,90 @@
+.checkin-page {
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: var(--gray-50);
+  padding: var(--space-6);
+}
+
+.checkin-container {
+  width: 100%;
+  max-width: 520px;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-8);
+}
+
+/* Header */
+.checkin-header {
+  text-align: center;
+}
+
+.checkin-header h1 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  color: var(--blue-900);
+}
+
+.checkin-header p {
+  color: var(--gray-400);
+  font-size: 0.9rem;
+}
+
+/* Mood selector */
+.mood-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: var(--space-3);
+}
+
+.mood-item {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: var(--space-4);
+  text-align: center;
+  cursor: pointer;
+  border: 2px solid transparent;
+  transition: var(--transition);
+}
+
+.mood-item:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-sm);
+}
+
+.mood-item.active {
+  border-color: var(--blue-400);
+  background: var(--blue-50);
+}
+
+.mood-emoji {
+  font-size: 1.5rem;
+  margin-bottom: var(--space-2);
+}
+
+.mood-label {
+  font-size: 0.75rem;
+  color: var(--gray-600);
+}
+
+/* Textarea */
+.checkin-textarea {
+  width: 100%;
+  min-height: 120px;
+  resize: none;
+}
+
+/* Footer */
+.checkin-actions {
+  display: flex;
+  justify-content: space-between;
+  gap: var(--space-4);
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .mood-grid {
+    grid-template-columns: repeat(3, 1fr);
+  }
+}
