@@ -1,0 +1,10 @@
+{
+  "rewrites": [
+    { "source": "/", "destination": "/interface/pages/login.html" },
+    { "source": "/login", "destination": "/interface/pages/login.html" },
+    { "source": "/dashboard", "destination": "/interface/pages/dashboard.html" },
+    { "source": "/checkin", "destination": "/interface/pages/checkin.html" },
+    { "source": "/crisis", "destination": "/interface/pages/crisis.html" },
+    { "source": "/register", "destination": "/interface/pages/first-register.html" }
+  ]
+}
