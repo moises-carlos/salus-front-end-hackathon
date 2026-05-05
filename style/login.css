@@ -1,13 +1,169 @@
-* {
-    padding: 0;
-    margin: 0;
-    box-sizing: border-box;
-    font-family: "Roboto", sans-serif;
+
+.login-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
 }
 
-.form-login {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column
+
+.login-panel-brand {
+  background: var(--blue-900);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-12) var(--space-16);
+  position: relative;
+  overflow: hidden;
+}
+
+.login-panel-brand::before {
+  content: '';
+  position: absolute;
+  top: -120px;
+  right: -120px;
+  width: 400px;
+  height: 400px;
+  background: radial-gradient(circle, rgba(59,130,196,0.25) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.login-panel-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  left: -80px;
+  width: 320px;
+  height: 320px;
+  background: radial-gradient(circle, rgba(26,95,168,0.30) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brand-logo .salus-logo {
+  color: var(--white);
+  font-size: 2rem;
+}
+
+.brand-content {
+  position: relative;
+  z-index: 1;
+}
+
+.brand-content h1 {
+  font-family: var(--font-display);
+  font-size: 2.5rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.25;
+  margin-bottom: var(--space-5);
+}
+
+.brand-content h1 em {
+  font-style: italic;
+  color: var(--blue-200);
+}
+
+.brand-content p {
+  color: var(--blue-200);
+  font-size: 1rem;
+  line-height: 1.7;
+  max-width: 360px;
+}
+
+.brand-stats {
+  display: flex;
+  gap: var(--space-8);
+  position: relative;
+  z-index: 1;
+}
+
+.stat-item {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-1);
+}
+
+.stat-number {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 600;
+  color: var(--white);
+}
+
+.stat-label {
+  font-size: 0.8125rem;
+  color: var(--blue-200);
+}
+
+
+.login-panel-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-16);
+  background: var(--gray-50);
+}
+
+.login-form-wrapper {
+  width: 100%;
+  max-width: 400px;
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.login-form-wrapper .form-header {
+  margin-bottom: var(--space-8);
+}
+
+.login-form-wrapper .form-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--blue-900);
+  margin-bottom: var(--space-2);
+}
+
+.login-form-wrapper .form-header p {
+  color: var(--gray-400);
+  font-size: 0.9375rem;
+}
+
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.forgot-link {
+  display: block;
+  text-align: right;
+  font-size: 0.8125rem;
+  color: var(--gray-400);
+  margin-top: calc(-1 * var(--space-3));
+  transition: color var(--transition);
+}
+.forgot-link:hover { color: var(--blue-600); }
+
+.login-footer {
+  margin-top: var(--space-6);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+.login-footer a {
+  font-weight: 500;
+  color: var(--blue-600);
+}
+@media (max-width: 768px) {
+  .login-page {
+    grid-template-columns: 1fr;
+  }
+
+  .login-panel-brand {
+    display: none;
+  }
+
+  .login-panel-form {
+    padding: var(--space-8) var(--space-6);
+    align-items: flex-start;
+    padding-top: var(--space-12);
+  }
 }

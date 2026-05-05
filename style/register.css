@@ -1,0 +1,204 @@
+/* ============================================
+   SALUS — Register Page
+   ============================================ */
+
+.register-page {
+  min-height: 100vh;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+}
+
+/* Left Panel — Form */
+.register-panel-form {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: var(--space-12) var(--space-16);
+  background: var(--gray-50);
+}
+
+.register-form-wrapper {
+  width: 100%;
+  max-width: 440px;
+  animation: fadeUp 0.5s ease forwards;
+}
+
+.register-form-wrapper .form-header {
+  margin-bottom: var(--space-8);
+}
+
+.register-form-wrapper .form-header .salus-logo {
+  margin-bottom: var(--space-6);
+  display: block;
+}
+
+.register-form-wrapper .form-header h2 {
+  font-family: var(--font-display);
+  font-size: 1.75rem;
+  font-weight: 500;
+  color: var(--blue-900);
+  margin-bottom: var(--space-2);
+}
+
+.register-form-wrapper .form-header p {
+  color: var(--gray-400);
+  font-size: 0.9375rem;
+}
+
+.register-form {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+}
+
+.form-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: var(--space-4);
+}
+
+.register-footer {
+  margin-top: var(--space-6);
+  text-align: center;
+  font-size: 0.875rem;
+  color: var(--gray-400);
+}
+.register-footer a {
+  font-weight: 500;
+  color: var(--blue-600);
+}
+
+.terms-text {
+  font-size: 0.8125rem;
+  color: var(--gray-400);
+  text-align: center;
+  line-height: 1.6;
+}
+.terms-text a {
+  color: var(--blue-600);
+}
+
+/* Right Panel — Brand */
+.register-panel-brand {
+  background: var(--blue-900);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  padding: var(--space-12) var(--space-16);
+  position: relative;
+  overflow: hidden;
+  gap: var(--space-10);
+}
+
+.register-panel-brand::before {
+  content: '';
+  position: absolute;
+  top: -100px;
+  left: -100px;
+  width: 380px;
+  height: 380px;
+  background: radial-gradient(circle, rgba(59,130,196,0.22) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.register-panel-brand::after {
+  content: '';
+  position: absolute;
+  bottom: -80px;
+  right: -80px;
+  width: 300px;
+  height: 300px;
+  background: radial-gradient(circle, rgba(26,95,168,0.28) 0%, transparent 70%);
+  pointer-events: none;
+}
+
+.brand-headline {
+  position: relative;
+  z-index: 1;
+}
+
+.brand-headline h2 {
+  font-family: var(--font-display);
+  font-size: 2.25rem;
+  font-weight: 500;
+  color: var(--white);
+  line-height: 1.3;
+  margin-bottom: var(--space-4);
+}
+
+.brand-headline h2 em {
+  font-style: italic;
+  color: var(--blue-200);
+}
+
+.brand-headline p {
+  color: var(--blue-200);
+  font-size: 0.9375rem;
+  line-height: 1.7;
+  max-width: 340px;
+}
+
+.brand-features {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-5);
+  position: relative;
+  z-index: 1;
+}
+
+.feature-item {
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+
+.feature-icon {
+  width: 40px;
+  height: 40px;
+  border-radius: var(--radius-md);
+  background: rgba(59,130,196,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
+
+.feature-icon svg {
+  width: 20px;
+  height: 20px;
+  stroke: var(--blue-200);
+  fill: none;
+  stroke-width: 1.75;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.feature-text strong {
+  display: block;
+  color: var(--white);
+  font-size: 0.9375rem;
+  font-weight: 500;
+  margin-bottom: 2px;
+}
+
+.feature-text span {
+  color: var(--blue-200);
+  font-size: 0.8125rem;
+  line-height: 1.5;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .register-page {
+    grid-template-columns: 1fr;
+  }
+  .register-panel-brand {
+    display: none;
+  }
+  .register-panel-form {
+    padding: var(--space-8) var(--space-6);
+  }
+  .form-row {
+    grid-template-columns: 1fr;
+  }
+}

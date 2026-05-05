@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>SALUS — Criar Conta</title>
+  <link rel="stylesheet" href="/style/global.css">
+  <link rel="stylesheet" href="/style/register.css">
+</head>
+<body>
+
+<div class="register-page">
+
+  <!-- Painel esquerdo: formulário -->
+  <div class="register-panel-form">
+    <div class="register-form-wrapper">
+
+      <div class="form-header">
+        <a href="/interface/pages/login.html" class="salus-logo">Sal<span>us</span></a>
+        <h2>Crie sua conta</h2>
+        <p>Seu cuidado começa com um primeiro passo</p>
+      </div>
+
+      <div id="alert-container"></div>
+
+      <form class="register-form" id="register-form" novalidate>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label" for="first-name">Nome</label>
+            <input
+              class="form-input"
+              type="text"
+              id="first-name"
+              name="firstName"
+              placeholder="Ana"
+              autocomplete="given-name"
+            >
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="last-name">Sobrenome</label>
+            <input
+              class="form-input"
+              type="text"
+              id="last-name"
+              name="lastName"
+              placeholder="Silva"
+              autocomplete="family-name"
+            >
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="email">E-mail</label>
+          <input
+            class="form-input"
+            type="email"
+            id="email"
+            name="email"
+            placeholder="seu@email.com"
+            autocomplete="email"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="password">Senha</label>
+          <input
+            class="form-input"
+            type="password"
+            id="password"
+            name="password"
+            placeholder="Mínimo 8 caracteres"
+            autocomplete="new-password"
+          >
+        </div>
+
+        <div class="form-group">
+          <label class="form-label" for="confirm-password">Confirmar senha</label>
+          <input
+            class="form-input"
+            type="password"
+            id="confirm-password"
+            name="confirmPassword"
+            placeholder="Repita a senha"
+            autocomplete="new-password"
+          >
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-full btn-lg" id="btn-register">
+          Criar conta
+        </button>
+
+        <p class="terms-text">
+          Ao criar sua conta, você concorda com os
+          <a href="#">Termos de Uso</a> e a
+          <a href="#">Política de Privacidade</a> do SALUS.
+        </p>
+
+      </form>
+
+      <div class="register-footer">
+        Já tem conta?
+        <a href="/interface/pages/login.html">Fazer login</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Painel direito: brand -->
+  <div class="register-panel-brand">
+
+    <div class="brand-headline">
+      <h2>Sua jornada de <em>bem-estar</em> começa aqui</h2>
+      <p>Junte-se a milhares de pessoas que já transformaram a forma de cuidar da saúde mental.</p>
+    </div>
+
+    <div class="brand-features">
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z"/></svg>
+        </div>
+        <div class="feature-text">
+          <strong>Diario emocional inteligente</strong>
+          <span>Registre como você se sente e entenda seus padroes ao longo do tempo.</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M18 20V10"/><path d="M12 20V4"/><path d="M6 20v-6"/></svg>
+        </div>
+        <div class="feature-text">
+          <strong>Analise de padroes emocionais</strong>
+          <span>Visualize tendencias e receba alertas antes que crises se agravem.</span>
+        </div>
+      </div>
+
+      <div class="feature-item">
+        <div class="feature-icon">
+          <svg viewBox="0 0 24 24"><path d="M17 21v-2a4 4 0 00-4-4H5a4 4 0 00-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 00-3-3.87"/><path d="M16 3.13a4 4 0 010 7.75"/></svg>
+        </div>
+        <div class="feature-text">
+          <strong>Conexao com profissionais</strong>
+          <span>Acesse psicologos e psiquiatras diretamente pela plataforma.</span>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+
+<script src="/scripts/auth.js"></script>
+<script src="/scripts/register.js"></script>
+</body>
+</html>
