@@ -31,23 +31,13 @@ if (btn) {
     const note = document.getElementById('note').value;
 
     try {
-      const token = localStorage.getItem('salus_token');
-
-      const response = await fetch('http://localhost:8080/api/checkin', {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-          'Authorization': `Bearer ${token}`
-        },
-        body: JSON.stringify({
-          mood: Number(selectedMood),
-          note: note
-        }),
-      });
-
-      if (!response.ok) {
-        throw new Error();
+      const userId = localStorage.getItem('salus_user_id');
+      
+      if (!userId) {
+        throw new Error('Usuário não identificado. Faça login novamente.');
       }
+
+      await window.salusApi.checkIn(userId, Number(selectedMood), [], note);
 
       showAlert?.('Check-in salvo com sucesso.', 'success');
 
@@ -56,7 +46,7 @@ if (btn) {
       }, 1200);
 
     } catch (err) {
-
+      console.error('Erro no check-in:', err);
       console.warn('Backend indisponível — salvando localmente');
 
       // fallback local
