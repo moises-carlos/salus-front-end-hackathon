@@ -3,6 +3,10 @@ import { AuthProvider, useAuth } from "../context/AuthContext";
 import LoginPage from "./pages/LoginPage";
 import RegisterPage from "./pages/RegisterPage";
 import DashboardPage from "./pages/DashboardPage";
+import Profile from "./pages/Profile";
+import Articles from "./pages/Articles";
+import Schedules from "./pages/Schedules";
+import Settings from "./pages/Settings"; 
 import { Toaster } from "sonner";
 import { Loader2 } from "lucide-react";
 
@@ -32,6 +36,8 @@ export default function App() {
         <Routes>
           <Route path="/login" element={<LoginPage />} />
           <Route path="/register" element={<RegisterPage />} />
+          
+          
           <Route
             path="/"
             element={
@@ -40,6 +46,47 @@ export default function App() {
               </PrivateRoute>
             }
           />
+
+         
+          <Route
+            path="/perfil"
+            element={
+              <PrivateRoute>
+                <Profile />
+              </PrivateRoute>
+            }
+          />
+
+          
+          <Route
+            path="/artigos"
+            element={
+              <PrivateRoute>
+                <Articles />
+              </PrivateRoute>
+            }
+          />
+
+          
+          <Route
+            path="/agendamentos"
+            element={
+              <PrivateRoute>
+                <Schedules />
+              </PrivateRoute>
+            }
+          />
+
+         
+          <Route
+            path="/configuracoes"
+            element={
+              <PrivateRoute>
+                <Settings />
+              </PrivateRoute>
+            }
+          />
+
           <Route path="*" element={<Navigate to="/" replace />} />
         </Routes>
       </BrowserRouter>

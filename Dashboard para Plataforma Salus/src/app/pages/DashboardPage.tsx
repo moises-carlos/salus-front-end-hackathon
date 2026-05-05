@@ -6,29 +6,29 @@ import { CheckInHistory } from "../components/CheckInHistory";
 import { SchedulingCard } from "../components/SchedulingCard";
 import { SOSButton } from "../components/SOSButton";
 import { useAuth } from "../../context/AuthContext";
-import { api } from "../../lib/api";
+import { api } from "../../lib/api"; // Restaurado
 import { useState } from "react";
-import { toast } from "sonner";
+import { useNavigate } from "react-router-dom";
+import { toast } from "sonner"; // Restaurado
 
 function Header() {
   const { user } = useAuth();
+  const navigate = useNavigate();
   
   return (
     <header className="flex items-center justify-between mb-7 gap-4">
-      {/* Greeting */}
       <div className="ml-1">
         <p className="text-[#94a3b8] uppercase tracking-widest" style={{ fontSize: "0.65rem", fontWeight: 600 }}>
           {new Date().toLocaleDateString('pt-BR', { weekday: 'long', day: 'numeric', month: 'long', year: 'numeric' })}
         </p>
         <h1 className="text-[#0f2044] mt-0.5" style={{ fontSize: "1.6rem", fontWeight: 700, lineHeight: 1.2 }}>
-          Olá, {user?.name?.split(' ')[0] || 'Visitante'} 👋
+          Olá, {user?.name?.split(' ')[0] || 'Visitante'} 
         </h1>
         <p className="text-[#64748b] mt-0.5" style={{ fontSize: "0.875rem" }}>
-          Como você está se sentindo hoje?
+          Bem-vindo ao seu painel de saúde.
         </p>
       </div>
 
-      {/* Actions */}
       <div className="flex items-center gap-2.5 flex-shrink-0">
         <div
           className="hidden sm:flex items-center gap-2 px-3.5 py-2 rounded-xl bg-white"
@@ -52,8 +52,10 @@ function Header() {
         </button>
 
         <div
-          className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#5ba4f5] to-[#2563eb] flex items-center justify-center cursor-pointer"
+          onClick={() => navigate("/perfil")}
+          className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#5ba4f5] to-[#2563eb] flex items-center justify-center cursor-pointer hover:brightness-110 transition-all"
           style={{ boxShadow: "0 2px 8px rgba(37,99,235,0.28)" }}
+          title="Ver meu perfil"
         >
           <span className="text-white" style={{ fontSize: "0.75rem", fontWeight: 700 }}>
             {user?.name?.substring(0, 2).toUpperCase() || "SA"}
@@ -64,6 +66,7 @@ function Header() {
   );
 }
 
+// Componente de Registro (QuickCheckIn) restaurado
 function QuickCheckIn({ onCheckInSuccess }: { onCheckInSuccess: () => void }) {
   const { user } = useAuth();
   const [selectedMood, setSelectedMood] = useState<number | null>(null);
@@ -142,7 +145,6 @@ function QuickCheckIn({ onCheckInSuccess }: { onCheckInSuccess: () => void }) {
 
 export default function DashboardPage() {
   const [refreshKey, setRefreshKey] = useState(0);
-
   const handleRefresh = () => setRefreshKey(prev => prev + 1);
 
   return (
@@ -155,8 +157,10 @@ export default function DashboardPage() {
       >
         <div className="flex-1 px-6 py-8 max-w-[1200px] w-full mx-auto pb-28">
           <Header />
+          
+          {/* Registro emocional inserido novamente */}
           <QuickCheckIn onCheckInSuccess={handleRefresh} />
-
+          
           <div className="flex gap-5 mb-5" style={{ flexWrap: "wrap" }}>
             <div style={{ flex: "0 0 calc(33.33% - 14px)", minWidth: "260px", flexGrow: 1, minHeight: "240px" }}>
               <CheckInCard mood="good" />
