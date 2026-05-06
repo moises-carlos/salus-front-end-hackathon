@@ -34,9 +34,9 @@ export default function LoginPage() {
       {/* Left Side - Hero */}
       <div className="hidden lg:flex lg:w-1/2 bg-[#0c1a3a] p-12 flex-col justify-between relative overflow-hidden">
         <div className="relative z-10">
-          <div className="flex items-center gap-1">
-            <span className="text-white text-2xl font-bold tracking-tight">Sal</span>
-            <span className="text-[#3b82f6] text-2xl font-bold tracking-tight">us</span>
+          <div className="flex items-center gap-0">
+            <span className="text-white text-4xl font-bold tracking-tight">Sal</span>
+            <span className="text-[#3b82f6] text-4xl font-bold tracking-tight">us</span>
           </div>
         </div>
 

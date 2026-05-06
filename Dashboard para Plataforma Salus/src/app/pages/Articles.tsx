@@ -17,14 +17,13 @@ const Articles = () => {
   const navigate = useNavigate();
   const [selectedArticle, setSelectedArticle] = useState<Article | null>(null);
   const [searchTerm, setSearchTerm] = useState("");
-
-  const articles: Article[] = [
+const articles: Article[] = [
     {
       title: "Identificando Padrões Emocionais",
       excerpt: "Entenda como o monitoramento diário ajuda a identificar sinais iniciais de crises...",
       content: "O SALUS atua na identificação precoce de padrões emocionais[cite: 2]. Ao registrar seu humor, o sistema transforma dados em insights úteis para evitar que crises se agravem[cite: 2]. O autoconhecimento gerado por esses registros permite uma prevenção ativa e um controle emocional maior sobre a rotina[cite: 2].",
       tag: "Tecnologia",
-      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&q=80&w=800",
       author: "Equipe Salus",
       readTime: "6 min",
       icon: <Brain size={18} />
@@ -44,7 +43,7 @@ const Articles = () => {
       excerpt: "Saiba como o Modo de Crise oferece alívio e orientação em momentos críticos...",
       content: "Crises inesperadas são dores reais enfrentadas por milhões de pessoas[cite: 2]. O SALUS oferece suporte imediato e humanizado nesses momentos[cite: 2]. Através de ferramentas de alívio rápido e conexão facilitada com profissionais, você nunca estará sozinho em uma crise de pânico ou ansiedade[cite: 2].",
       tag: "Emergência",
-      image: "https://images.unsplash.com/photo-1527137342181-19a869751835?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800",
       author: "Psic. Ana Oliveira",
       readTime: "4 min",
       icon: <Zap size={18} />
@@ -54,7 +53,7 @@ const Articles = () => {
       excerpt: "A relação profunda entre noites bem dormidas e a regulação da ansiedade...",
       content: "O sono é um pilar da saúde mental. Manter horários regulares e reduzir estímulos eletrônicos antes de dormir ajuda o cérebro a processar emoções do dia. O SALUS visa promover o bem-estar e a prevenção através desses hábitos saudáveis[cite: 2].",
       tag: "Sono",
-      image: "https://images.unsplash.com/photo-1511295742364-917e70351634?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1541781774459-bb2af2f05b55?auto=format&fit=crop&q=80&w=800", // Link Corrigido (4)
       author: "Dr. Moisés Carlos",
       readTime: "7 min",
       icon: <Moon size={18} />
@@ -74,7 +73,7 @@ const Articles = () => {
       excerpt: "Técnicas de atenção plena para reduzir sintomas de estresse e depressão...",
       content: "Mindfulness ajuda a identificar pensamentos intrusivos. Ao focar na respiração e no momento presente, o usuário reduz a reatividade emocional, um dos ganhos esperados para quem busca melhoria na qualidade de vida com o SALUS[cite: 2].",
       tag: "Prática",
-      image: "https://images.unsplash.com/photo-1508672019048-805c876b67e2?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&q=80&w=800",
       author: "Vitor Santos",
       readTime: "5 min",
       icon: <Sun size={18} />
@@ -94,13 +93,12 @@ const Articles = () => {
       excerpt: "Por que buscar profissionais de saúde mental é um ato de coragem e autocuidado...",
       content: "Um dos objetivos do SALUS é intermediar a busca de ajuda e conectar usuários a profissionais[cite: 2]. Superar o preconceito contra o tratamento é fundamental para alcançar o controle emocional e a prevenção de crises a longo prazo[cite: 2].",
       tag: "Conscientização",
-      image: "https://images.unsplash.com/photo-1573497019940-1c28c88b4f3e?auto=format&fit=crop&q=80&w=800",
+      image: "https://images.unsplash.com/photo-1527689368864-3a821dbccc34?auto=format&fit=crop&q=80&w=800", // Link Corrigido (8)
       author: "Equipe Salus",
       readTime: "4 min",
       icon: <ShieldAlert size={18} />
     }
   ];
-
   const filteredArticles = articles.filter(article =>
     article.title.toLowerCase().includes(searchTerm.toLowerCase()) ||
     article.tag.toLowerCase().includes(searchTerm.toLowerCase())
@@ -126,7 +124,7 @@ const Articles = () => {
                 <BookOpen size={32} />
               </div>
               <div>
-                <h1 className="text-3xl font-bold text-[#0f2044]">SALUS: Artigos e Dicas</h1>
+                <h1 className="text-3xl font-bold text-[#0f2044]">Artigos e Dicas</h1>
                 <p className="text-slate-500 font-medium">Seu aliado diário na jornada de saúde mental[cite: 2]</p>
               </div>
             </div>

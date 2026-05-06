@@ -7,11 +7,11 @@ import {
   Menu,
   X,
   LogOut,
-  HeartPulse,
 } from "lucide-react";
 import { useAuth } from "../../context/AuthContext";
 import { useNavigate, useLocation } from "react-router-dom";
 import { toast } from "sonner";
+import logoSalus from "../public/Logo.png";
 
 const navItems = [
   { icon: LayoutDashboard, label: "Dashboard", path: "/" },
@@ -64,18 +64,25 @@ export function Sidebar() {
         `}
         style={{ boxShadow: "4px 0 24px rgba(0,0,0,0.18)" }}
       >
-        <div className="flex items-center justify-between px-4 pt-7 pb-8">
-          <div 
-            className="flex items-center gap-3 cursor-pointer" 
+        {/* Logo Section */}
+        <div className="flex items-center justify-between px- pt-7 pb-8">
+          <div
+            className="flex items-center gap-3 cursor-pointer"
             onClick={() => handleNavigation("/")}
           >
-            <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-[#4a90d9] to-[#2563eb] flex items-center justify-center shadow-lg flex-shrink-0">
-              <HeartPulse size={18} className="text-white" />
-            </div>
+            <img
+              src={logoSalus}
+              alt="Salus Logo"
+              className="w-15 h-15 object-contain flex-shrink-0"
+            />
             {!collapsed && (
               <span
                 className="text-white tracking-wide"
-                style={{ fontSize: "1.35rem", fontWeight: 700, letterSpacing: "0.04em" }}
+                style={{
+                  fontSize: "1.5rem", /* Aumentado levemente para acompanhar a logo */
+                  fontWeight: 700,
+                  letterSpacing: "0.04em"
+                }}
               >
                 Salus
               </span>
@@ -139,7 +146,7 @@ export function Sidebar() {
         <div className="mx-4 h-px bg-white/10 mb-4" />
 
         <div className={`px-3 pb-6 flex flex-col gap-2 ${collapsed ? "items-center" : ""}`}>
-          <div 
+          <div
             className={`flex items-center gap-3 px-2 cursor-pointer hover:bg-white/5 py-2 rounded-xl transition-colors ${collapsed ? "justify-center" : ""}`}
             onClick={() => handleNavigation("/perfil")}
           >
@@ -155,7 +162,7 @@ export function Sidebar() {
               </div>
             )}
           </div>
-          
+
           <button
             onClick={handleLogout}
             className={`

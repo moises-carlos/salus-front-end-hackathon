@@ -1,31 +1,51 @@
-import React, { useState } from "react";
-import { User, ClipboardList, Phone, UserRound, ArrowLeft, Save, Edit2, X } from "lucide-react";
+import React, { useState, useEffect } from "react";
+import { User, ClipboardList, Phone, UserRound, ArrowLeft, Save, Edit2, X, Loader2 } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
+import { useAuth } from "../../context/AuthContext";
+import { api } from "../../lib/api";
 
 const Profile = () => {
   const navigate = useNavigate();
+  const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
+  const [isLoadingHistory, setIsLoadingHistory] = useState(true);
+  const [history, setHistory] = useState<any[]>([]);
 
+  // Inicializa o formulário com dados do Contexto de Autenticação
   const [userData, setUserData] = useState({
-    nome: "Caio Lucas Laurindo Da Silva",
-    nascimento: "02/04/2007",
-    email: "caio.lucas@exemplo.com",
-    medico: "Dr. Ricardo Oliveira",
+    nome: user?.name || "Usuário",
+    email: user?.email || "",
+    nascimento: "02/04/2007", 
+    medico: "Dr. Ricardo Oliveira", 
     contatoMedico: "(81) 98888-7777",
-    historico: [
-      { data: "01/05/2026", registro: "Check-in matinal concluído" },
-      { data: "28/04/2026", registro: "Pressão arterial aferida: 12/8" },
-      { data: "15/04/2026", registro: "Consulta de rotina realizada" }
-    ]
   });
 
   const [editForm, setEditForm] = useState({ ...userData });
 
-  const handleSave = () => {
+  // Busca o histórico real da API ao carregar a página
+  useEffect(() => {
+    async function loadHistory() {
+      if (!user?.id) return;
+      try {
+        const data = await api.getHistory(user.id);
+        setHistory(data);
+      } catch (error) {
+        console.error("Erro ao carregar histórico:", error);
+        toast.error("Não foi possível carregar seu histórico.");
+      } finally {
+        setIsLoadingHistory(false);
+      }
+    }
+    loadHistory();
+  }, [user]);
+
+  const handleSave = async () => {
+    // Nota: O trecho da API fornecido não possui 'updateProfile'. 
+    // Esta função atualiza o estado local para refletir a interface.
     setUserData({ ...editForm });
     setIsEditing(false);
-    toast.success("Perfil atualizado com sucesso!");
+    toast.success("Perfil atualizado localmente!");
   };
 
   const handleCancel = () => {
@@ -88,7 +108,7 @@ const Profile = () => {
             
             <div className="space-y-4">
               <div>
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Nome Completo</label>
+                <label className="text-sm font-medium text-slate-400 uppercase">Nome Completo</label>
                 {isEditing ? (
                   <input 
                     type="text" 
@@ -102,21 +122,7 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Data de Nascimento</label>
-                {isEditing ? (
-                  <input 
-                    type="text" 
-                    className="w-full mt-1 p-2 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-blue-500"
-                    value={editForm.nascimento}
-                    onChange={(e) => setEditForm({...editForm, nascimento: e.target.value})}
-                  />
-                ) : (
-                  <p className="text-slate-700 font-medium">{userData.nascimento}</p>
-                )}
-              </div>
-
-              <div>
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">E-mail</label>
+                <label className="text-sm font-medium text-slate-400 uppercase">E-mail</label>
                 {isEditing ? (
                   <input 
                     type="email" 
@@ -141,7 +147,7 @@ const Profile = () => {
             
             <div className="space-y-4">
               <div>
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Médico Responsável</label>
+                <label className="text-sm font-medium text-slate-400 uppercase">Médico Responsável</label>
                 {isEditing ? (
                   <input 
                     type="text" 
@@ -155,20 +161,11 @@ const Profile = () => {
               </div>
 
               <div>
-                <label className="text-xs font-bold text-slate-400 uppercase tracking-wider">Telefone de Contato</label>
-                {isEditing ? (
-                  <input 
-                    type="text" 
-                    className="w-full mt-1 p-2 bg-slate-50 border border-slate-200 rounded-lg outline-none focus:border-blue-500"
-                    value={editForm.contatoMedico}
-                    onChange={(e) => setEditForm({...editForm, contatoMedico: e.target.value})}
-                  />
-                ) : (
-                  <div className="flex items-center gap-2 mt-1">
-                    <Phone size={14} className="text-slate-400" />
-                    <p className="text-slate-700 font-medium">{userData.contatoMedico}</p>
-                  </div>
-                )}
+                <label className="text-sm font-medium text-slate-400 uppercase">Contato</label>
+                <div className="flex items-center gap-2 mt-1">
+                  <Phone size={14} className="text-slate-400" />
+                  <p className="text-slate-700 font-medium">{userData.contatoMedico}</p>
+                </div>
               </div>
             </div>
           </div>
@@ -178,19 +175,31 @@ const Profile = () => {
               <div className="p-2 bg-purple-50 rounded-lg">
                 <ClipboardList className="text-purple-600" size={24} />
               </div>
-              <h2 className="text-xl font-bold text-slate-800">Histórico Recente</h2>
+              <h2 className="text-xl font-bold text-slate-800">Histórico de Check-ins (API)</h2>
             </div>
             
             <div className="divide-y divide-slate-100">
-              {userData.historico.map((item, index) => (
-                <div key={index} className="py-4 flex justify-between items-center hover:bg-slate-50 px-2 transition-colors rounded-lg">
-                  <span className="text-slate-700 font-medium">{item.registro}</span>
-                  <span className="text-slate-400 text-sm font-semibold bg-slate-100 px-3 py-1 rounded-full">{item.data}</span>
+              {isLoadingHistory ? (
+                <div className="py-10 flex justify-center">
+                  <Loader2 className="animate-spin text-blue-600" />
                 </div>
-              ))}
+              ) : history.length > 0 ? (
+                history.map((item, index) => (
+                  <div key={index} className="py-4 flex justify-between items-center hover:bg-slate-50 px-2 transition-colors rounded-lg">
+                    <div className="flex flex-col">
+                      <span className="text-slate-700 font-medium">Humor Nível {item.moodLevel}</span>
+                      <span className="text-slate-400 text-xs">{item.notes}</span>
+                    </div>
+                    <span className="text-slate-400 text-sm font-semibold bg-slate-100 px-3 py-1 rounded-full">
+                      {new Date(item.createdAt).toLocaleDateString('pt-BR')}
+                    </span>
+                  </div>
+                ))
+              ) : (
+                <p className="py-10 text-center text-slate-400">Nenhum registro encontrado.</p>
+              )}
             </div>
           </div>
-
         </div>
       </div>
     </div>
